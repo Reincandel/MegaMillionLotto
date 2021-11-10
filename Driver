@@ -1,0 +1,87 @@
+/**
+ * @author 6317278
+ *
+ * Title: Mega Million Lotto
+ *
+ * Semester: COP2210 Fall 2021
+ *
+ * Professor's Name: Prof. Charters
+ *
+ * This program will get a number from 1 to 70 from the user and comparing it to the random number generated.
+ * It will also randomize the power ball from 1 to 25 and compare it and will go through an if else statement
+ * that will see if you get a prize or not.
+ */
+
+package Controller;
+
+import Domain.MegaMillionLotto;
+
+public class LotteryGame {
+    /**
+     * This will get the object from the domain and run with getUserPicks and get run
+     * through with an if else statement
+     * @param args
+     */
+    public static void main(String[] args) {
+        MegaMillionLotto aMegaMillionLotto = new MegaMillionLotto();
+        aMegaMillionLotto.getUserPicks();
+
+        int matchingNums = aMegaMillionLotto.checkLotteryMatch();
+        int userPowerBall = aMegaMillionLotto.getUserPowerBall();
+        int randomPowerBall = aMegaMillionLotto.getWinningPowerBall();
+
+        if (matchingNums == 3 && userPowerBall != randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get a free ticket!");
+        } else if (matchingNums == 3 && userPowerBall == randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get $50!");
+        } else if (matchingNums == 4 && userPowerBall != randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get $100!");
+        } else if (matchingNums == 4 && userPowerBall == randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get $1000!");
+        } else if (matchingNums == 5 && userPowerBall != randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get $500!");
+        } else if (matchingNums == 5 && userPowerBall == randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get $5000!");
+        } else if (matchingNums == 6 && userPowerBall != randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get $1000!");
+        } else if (matchingNums == 6 && userPowerBall == randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get $10000!");
+        } else if (matchingNums == 7 && userPowerBall != randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get $50000!");
+        } else if (matchingNums == 7 && userPowerBall == randomPowerBall) {
+            System.out.println("Your number match: " + matchingNums);
+            System.out.println("Your power ball: " + userPowerBall);
+            System.out.println("Random power ball: " + randomPowerBall);
+            System.out.println("You get $500000!");
+        } else {
+            System.out.println("Sorry, no prizes today. Try Again!");
+        }
+    }
+}
