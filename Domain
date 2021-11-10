@@ -1,0 +1,133 @@
+package Domain;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ * declare global variables
+ */
+public class MegaMillionLotto {
+    private int[] winningMegaMillionLotto = new int[7];
+    private int[] userLotteryPicks = new int[7];
+    private int winningPowerBall;
+    private int userPowerBall;
+
+    /**
+     * make the constructor and generate random number to be passed to the
+     * winnningMegaMillionLotto array
+     */
+    public MegaMillionLotto() {
+        Random random = new Random();
+        boolean duplicateFound = false;
+        int randomNum;
+        for (int i = 0; i < winningMegaMillionLotto.length; i++) {
+            randomNum = random.nextInt(70) + 1;
+            duplicateFound = checkForDuplicates(winningMegaMillionLotto, randomNum);
+            if (duplicateFound) {
+                i--;
+            } else {
+                winningMegaMillionLotto[i] = randomNum;
+            }
+        }
+        winningPowerBall = random.nextInt(25) + 1;
+        // Checker
+        for (int i : winningMegaMillionLotto) {
+            System.out.println(i);
+        }
+        System.out.println(winningPowerBall + " aaa");
+    }
+
+    /**
+     * This will check for any duplicates through the array and the current number being compared
+     *
+     * @param anArray
+     * @param aNum
+     * @return boolean
+     */
+    public boolean checkForDuplicates(int[] anArray, int aNum) {
+            boolean duplicateFound = false;
+            int i = 0;
+            while (!duplicateFound && i < anArray.length) {
+            if (anArray[i] == aNum) {
+                duplicateFound = true;
+            }
+            i++;
+        }
+        return duplicateFound;
+    }
+
+    /**
+     * This will check each number in the userArray if there are any comparison number with the
+     * random number
+     *
+     * @return number of matches
+     */
+    public int checkLotteryMatch() {
+        int numMatches = 0;
+        for (int megaMillionLotto : winningMegaMillionLotto) {
+            for (int userLotteryPick : userLotteryPicks) {
+                if (megaMillionLotto == userLotteryPick) {
+                    numMatches++;
+                }
+            }
+        }
+        return numMatches;
+    }
+
+    /**
+     * This will see if the power ball are the same
+     *
+     * @return power ball match number
+     */
+    public int checkPowerBallMatch() {
+        int powerBallMatch = 0;
+        if (winningPowerBall == userPowerBall) {
+            powerBallMatch++;
+        }
+        return powerBallMatch;
+    }
+
+    /**
+     * get the user picks from 1 to 70 then make sure to class checkForDuplicates
+     * to check for any duplicates
+     */
+    public void getUserPicks() {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        boolean duplicateFound = false;
+        int userPicks;
+        for (int i = 0; i < userLotteryPicks.length; i++) {
+            do {
+                System.out.print(i + 1 + ") Enter a number from 1 - 70: ");
+                userPicks = scanner.nextInt();
+                scanner.nextLine();
+                if (userPicks < 1 || userPicks > 70) {
+                    System.out.println("INVALID INPUT");
+                }
+            } while (userPicks < 1 || userPicks > 70);
+
+            duplicateFound = checkForDuplicates(userLotteryPicks, userPicks);
+            if (duplicateFound) {
+                System.out.println("No duplicates allowed, try again.");
+                i--;
+            } else {
+                userLotteryPicks[i] = userPicks;
+            }
+        }
+        userPowerBall = random.nextInt(25) + 1;
+    }
+
+    /**
+     * @return get the random power ball number
+     */
+    public int getWinningPowerBall() {
+        return winningPowerBall;
+    }
+
+    /**
+     * @return get the random number for user power ball number
+     */
+    public int getUserPowerBall() {
+        return userPowerBall;
+    }
+}
